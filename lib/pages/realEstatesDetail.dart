@@ -107,28 +107,38 @@ class _RealEstatesDetailState extends State<RealEstatesDetail> {
                               ),
                               ListTile(
                                 title: Text("Kiralık Mı Satılık"),
-                                subtitle: Text(widget.realEstates.kiralikSatilik
-                                    .toString()),
+                                subtitle: Text(
+                                    widget.realEstates.rentSale.toString()),
                               ),
                               ListTile(
                                 title: Text("Gayrimenkul yaşı"),
                                 subtitle: Text(
-                                    widget.realEstates.binaYasi.toString()),
+                                    widget.realEstates.buildAge.toString()),
                               ),
                               ListTile(
                                 title: Text("Fiyatı"),
                                 subtitle:
-                                    Text(widget.realEstates.fiyat.toString()),
+                                    Text(widget.realEstates.price.toString()),
                               ),
                               ListTile(
                                 title: Text("Kaç m2"),
                                 subtitle: Text(
-                                    widget.realEstates.metrekare.toString()),
+                                    widget.realEstates.squareMeters.toString()),
                               ),
                               ListTile(
                                 title: Text("Oda Sayısı"),
                                 subtitle: Text(
-                                    widget.realEstates.odaSayisi.toString()),
+                                    widget.realEstates.roomNumbers.toString()),
+                              ),
+                              ListTile(
+                                title: Text("Emlakçı İsmi"),
+                                subtitle: Text(widget.realEstates.sellersCompany
+                                    .toString()),
+                              ),
+                              ListTile(
+                                title: Text("Emlakçı Telefon Numarası"),
+                                subtitle: Text(
+                                    widget.realEstates.sellerPhone.toString()),
                               ),
                               ListTile(
                                 title: Text("Gayrimenkul türü"),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hazar_emlak/models/user.dart';
+import 'package:hazar_emlak/pages/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'home_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   RegistrationScreen({Key? key}) : super(key: key);
@@ -24,6 +28,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           'password': users.password,
           'role': users.role
         }));
+
     print(res.body);
   }
 
@@ -133,6 +138,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             save();
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ));
           }
         },
         child: Text(

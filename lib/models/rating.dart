@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hazar_emlak/models/real_estates.dart';
 import 'package:hazar_emlak/models/user.dart';
 

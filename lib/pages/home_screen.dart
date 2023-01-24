@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hazar_emlak/models/real_estates.dart';
 import 'package:hazar_emlak/models/real_estates_filter.dart';
-import 'package:hazar_emlak/pages/show_detail.dart';
+import 'package:hazar_emlak/pages/show_realEstates_detail.dart';
+import 'package:hazar_emlak/pages/welcome.dart';
+import 'package:hazar_emlak/services/ratingService.dart';
 import 'package:hazar_emlak/services/real_estates_service.dart';
-import 'package:hazar_emlak/widgets/NavigationDrawerWdiget.dart';
+
 import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
@@ -45,25 +47,25 @@ class _HomeScreenState extends State<HomeScreen> {
     var res = await http.post(Uri.parse(urls),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
-          'kiralikSatilik': realEstatesFilter.kiralikSatilik,
-          'odaSayisi': realEstatesFilter.odaSayisi,
+          'rentSale': realEstatesFilter.rentSale,
+          'roomNumbers': realEstatesFilter.roomNumbers,
           'realEstateType': realEstatesFilter.realEstateType,
-          'minFiyat': realEstatesFilter.minFiyat,
-          'maxFiyat': realEstatesFilter.maxFiyat,
-          'minBinaYasi': realEstatesFilter.maxBinaYasi,
-          'maxBinaYasi': realEstatesFilter.maxBinaYasi,
-          'fiyat': realEstatesFilter.fiyat,
-          'metrekare': realEstatesFilter.metrekare,
-          'binaYasi': realEstatesFilter.binaYasi,
-          'minMetrekare': realEstatesFilter.minMetrekare,
-          'maxMetrekare': realEstatesFilter.maxMetrekare,
+          'minPrice': realEstatesFilter.minPrice,
+          'maxPrice': realEstatesFilter.maxPrice,
+          'minBuildAge': realEstatesFilter.minBuildAge,
+          'maxBuildAge': realEstatesFilter.maxBuildAge,
+          'price': realEstatesFilter.price,
+          'squareMeters': realEstatesFilter.squareMeters,
+          'buildAge': realEstatesFilter.buildAge,
+          'minSquareMeters': realEstatesFilter.minSquareMeters,
+          'maxSquareMeters': realEstatesFilter.maxSquareMeters,
         }));
     if (res.statusCode == 200 ||
         res.statusCode == 201 ||
         res.statusCode == 202 ||
         res.statusCode == 203 ||
         res.statusCode == 204) {
-      print(res.body);
+      // print(res.body);
       var decodeData = utf8.decode(res.bodyBytes);
       List<dynamic> data = jsonDecode(decodeData);
       List<RealEstates> realEstates =
@@ -87,6 +89,32 @@ class _HomeScreenState extends State<HomeScreen> {
       isLoading = true;
     });
     realEstatesFilters = await filters() as List<RealEstates>?;
+    await getRatings();
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Future getRatings() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    if (realEstatesFilters != null) {
+      realEstatesFilters!.forEach((estate) async {
+        if (estate.id != null) {
+          final ratings = await RatingService().getPost(estate.id!);
+          double awerageRating = 0;
+          for (var element in ratings) {
+            awerageRating += element.ratings! / ratings.length;
+          }
+
+          setState(() {
+            estate.rating!.ratings = awerageRating;
+          });
+        }
+      });
+    }
     setState(() {
       isLoading = false;
     });
@@ -102,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
       keyboardType: TextInputType.number,
       onChanged: (value) {
         //int value = int.parse(realEstatesFilter.minFiyat.toString());
-        realEstatesFilter.minFiyat = int.parse(value);
+        realEstatesFilter.minPrice = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -125,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
       keyboardType: TextInputType.number,
       onChanged: (value) {
         // int value = int.parse(realEstatesFilter.maxFiyat.toString());
-        realEstatesFilter.maxFiyat = int.parse(value);
+        realEstatesFilter.maxPrice = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -148,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
       keyboardType: TextInputType.number,
       onChanged: (value) {
         // int value = int.parse(realEstatesFilter.minBinaYasi.toString());
-        realEstatesFilter.minBinaYasi = int.parse(value);
+        realEstatesFilter.minBuildAge = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -170,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //controller:TextEditingController(text: realEstatesFilter.maxBinaYasi.toString()),
       keyboardType: TextInputType.number,
       onChanged: (value) {
-        realEstatesFilter.maxBinaYasi = int.parse(value);
+        realEstatesFilter.maxBuildAge = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -192,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // controller: TextEditingController(text: realEstatesFilter.maxMetrekare.toString()),
       keyboardType: TextInputType.number,
       onChanged: (value) {
-        realEstatesFilter.maxMetrekare = int.parse(value);
+        realEstatesFilter.maxSquareMeters = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -215,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
       keyboardType: TextInputType.number,
       onChanged: (value) {
         //int value = int.parse(realEstatesFilter.minMetrekare.toString());
-        realEstatesFilter.minMetrekare = int.parse(value);
+        realEstatesFilter.minSquareMeters = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -274,17 +302,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           setModalState)));
         },
       ),
-      drawer: NavigationDrawerWidget(),
+
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
         toolbarHeight: 80.0,
         title: Row(
           children: [
-            Icon(
-              Icons.location_on,
-              color: Colors.green.shade400,
-            ),
             Text(
               "Türkiye Konya",
               style: TextStyle(
@@ -295,11 +319,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.grey.shade600,
-              ),
-              onPressed: () {})
+              icon: Icon(Icons.clear_sharp, color: Colors.lightGreen.shade400),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Welcome(),
+                    ));
+              })
         ],
       ),
       // drawer: NavigationDrawerWidget(),
@@ -323,16 +350,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "Başlık: " +
                                     realEstatesFilters![index].headerText! +
                                     "      Durum : " +
-                                    realEstatesFilters![index].kiralikSatilik! +
+                                    realEstatesFilters![index].rentSale! +
                                     "\n      Gayrimenkul Türü : " +
                                     realEstatesFilters![index].realEstateType!,
                                 style: TextStyle(color: Colors.white),
                               ),
                               subtitle: Text("Fiyat : " +
-                                  realEstatesFilters![index].fiyat.toString() +
+                                  realEstatesFilters![index].price.toString() +
                                   "      metrekare/Dönüm : " +
                                   realEstatesFilters![index]
-                                      .metrekare
+                                      .squareMeters
+                                      .toString()),
+                              trailing: Text("Puanı : " +
+                                  realEstatesFilters![index]
+                                      .rating!
+                                      .ratings
                                       .toString()),
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
@@ -384,7 +416,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 onChanged: (String? value) {
-                  realEstatesFilter.kiralikSatilik = value;
+                  realEstatesFilter.rentSale = value;
                   setModalState(() {
                     print("choosen value $_chosenValue");
                     print("choosen value $value");
@@ -414,7 +446,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 onChanged: (String? value) {
-                  realEstatesFilter.odaSayisi = value;
+                  realEstatesFilter.roomNumbers = value;
                   setModalState(() {
                     _chosenValue2 = value!;
                   });

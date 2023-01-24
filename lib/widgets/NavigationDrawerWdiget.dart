@@ -4,8 +4,8 @@ import 'package:hazar_emlak/pages/home_screen.dart';
 import 'package:hazar_emlak/pages/putRealEstates.dart';
 import 'package:hazar_emlak/pages/realEstatesDetail.dart';
 import 'package:hazar_emlak/pages/real_estates_list.dart';
-import 'package:hazar_emlak/pages/showUsers.dart';
-import 'package:hazar_emlak/pages/show_detail.dart';
+import 'package:hazar_emlak/pages/userList.dart';
+import 'package:hazar_emlak/pages/show_realEstates_detail.dart';
 import 'package:hazar_emlak/pages/welcome.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -26,26 +26,26 @@ class NavigationDrawerWidget extends StatelessWidget {
                     height: 12,
                   ),
                   buildMenuItem(
-                    text: 'UserList',
+                    text: 'Kullanıcı Listesi',
                     icon: Icons.people,
                     onClicked: () => selectedItem(context, 1),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Real Estate Ekle',
-                    icon: Icons.favorite_border,
+                    text: 'Gayrimenkul Ekle',
+                    icon: Icons.save,
                     onClicked: () => selectedItem(context, 2),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Real Estate Listesi',
-                    icon: Icons.workspaces_outline,
+                    text: 'Gayrimenkul Listesi',
+                    icon: Icons.featured_play_list_outlined,
                     onClicked: () => selectedItem(context, 3),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'gayrimenkul detay',
-                    icon: Icons.accessibility,
+                    text: 'Ana Sayfa',
+                    icon: Icons.home,
                     onClicked: () => selectedItem(context, 4),
                   ),
                 ],

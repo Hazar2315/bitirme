@@ -1,56 +1,63 @@
-import 'dart:convert';
+import 'package:hazar_emlak/models/rating.dart';
 
 class RealEstates {
   int? id;
   String? headerText;
   String? bodyText;
-  String? kiralikSatilik;
-  int? fiyat;
-  int? metrekare;
-  String? odaSayisi;
-  int? binaYasi;
+  String? rentSale;
+  int? price;
+  int? squareMeters;
+  String? roomNumbers;
+  int? buildAge;
   String? realEstateType;
-
+  Ratings? rating = Ratings(ratings: 0);
+  String? sellerPhone;
+  String? sellersCompany;
   RealEstates(
       {this.id,
       this.headerText,
       this.bodyText,
-      this.kiralikSatilik,
-      this.fiyat,
-      this.metrekare,
-      this.odaSayisi,
-      this.binaYasi,
-      this.realEstateType});
+      this.rentSale,
+      this.price,
+      this.squareMeters,
+      this.roomNumbers,
+      this.buildAge,
+      this.realEstateType,
+      this.sellerPhone,
+      this.sellersCompany});
   RealEstates.empty();
 
   @override
   toString() =>
-      "RealState(fiyat : ${fiyat.toString()} ; binaYasi: ${binaYasi.toString()} ; metrekare: ${metrekare.toString()} )";
+      "RealState(price : ${price.toString()} ; buildAge: ${buildAge.toString()} ; squareMeters: ${squareMeters.toString()} )";
 
   factory RealEstates.fromJson(Map<String, dynamic> json) {
     return RealEstates(
-      id: json["id"],
-      headerText: json["headerText"],
-      bodyText: json["bodyText"],
-      kiralikSatilik: json["kiralikSatilik"],
-      fiyat: json["fiyat"],
-      metrekare: json["metrekare"],
-      odaSayisi: json["odaSayisi"],
-      binaYasi: json["binaYasi"],
-      realEstateType: json["realEstateType"],
-    );
+        id: json["id"],
+        headerText: json["headerText"],
+        bodyText: json["bodyText"],
+        rentSale: json["rentSale"],
+        price: json["price"],
+        squareMeters: json["squareMeters"],
+        roomNumbers: json["roomNumbers"],
+        buildAge: json["buildAge"],
+        realEstateType: json["realEstateType"],
+        sellerPhone: json["sellerPhone"],
+        sellersCompany: json["sellersCompany"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["headerText"] = headerText;
     data["bodyText"] = bodyText;
-    data["kiralikSatilik"] = kiralikSatilik;
-    data["fiyat"] = fiyat;
-    data["metrekare"] = metrekare;
-    data["odaSayisi"] = odaSayisi;
-    data["binaYasi"] = binaYasi;
+    data["rentSale"] = rentSale;
+    data["price"] = price;
+    data["squareMeters"] = squareMeters;
+    data["roomNumbers"] = roomNumbers;
+    data["buildAge"] = buildAge;
     data["realEstateType"] = realEstateType;
+    data["sellerPhone"] = sellerPhone;
+    data["sellersCompany"] = sellersCompany;
     return data;
   }
 }

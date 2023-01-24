@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hazar_emlak/models/user.dart';
-import 'package:hazar_emlak/pages/admin_screen.dart';
 import 'package:hazar_emlak/pages/home_screen.dart';
 import 'package:hazar_emlak/pages/registration_screen.dart';
-import 'package:hazar_emlak/pages/showUsers.dart';
+import 'package:hazar_emlak/pages/userList.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

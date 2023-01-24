@@ -123,6 +123,10 @@ class _ShowDetailState extends State<ShowDetail> {
           widget.realEstate.id.toString(),
           style: TextStyle(color: Colors.black),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.lightGreen.shade400),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -132,7 +136,6 @@ class _ShowDetailState extends State<ShowDetail> {
           ),
         ),
       ),
-      drawer: NavigationDrawerWidget(),
       body: isLoading
           ? Text("true")
           : Container(
@@ -159,32 +162,41 @@ class _ShowDetailState extends State<ShowDetail> {
                           shrinkWrap: true,
                           children: <Widget>[
                             MyRow(
-                                baslik: "Adres",
+                                baslik: "Adres : ",
                                 deger: widget.realEstate.headerText!),
                             Divider(),
                             MyRow(
-                                baslik: "Açıklama ve Açık adres",
+                                baslik: "Açıklama ve Açık adres : ",
                                 deger: widget.realEstate.bodyText!),
                             Divider(),
                             MyRow(
-                                baslik: "Gayrimenkul Türü",
+                                baslik: "Gayrimenkul Türü : ",
                                 deger: widget.realEstate.realEstateType!),
                             Divider(),
                             MyRow(
-                                baslik: "Kiralık/Satılık",
-                                deger: widget.realEstate.kiralikSatilik!),
+                                baslik: "Kiralık/Satılık : ",
+                                deger: widget.realEstate.rentSale!),
                             Divider(),
                             MyRow(
-                                baslik: "Fiyat",
-                                deger: widget.realEstate.fiyat!.toString()),
+                                baslik: "Fiyat : ",
+                                deger: widget.realEstate.price!.toString()),
                             Divider(),
                             MyRow(
-                                baslik: "Metrekare/Dönüm",
-                                deger: widget.realEstate.metrekare!.toString()),
+                                baslik: "Metrekare/Dönüm : ",
+                                deger:
+                                    widget.realEstate.squareMeters!.toString()),
                             Divider(),
                             MyRow(
-                                baslik: "Oda Sayısı",
-                                deger: widget.realEstate.odaSayisi!),
+                                baslik: "Oda Sayısı : ",
+                                deger: widget.realEstate.roomNumbers!),
+                            Divider(),
+                            MyRow(
+                                baslik: "Emlakçı : ",
+                                deger: widget.realEstate.sellersCompany!),
+                            Divider(),
+                            MyRow(
+                                baslik: "Emlakçı Telefon Numarası : ",
+                                deger: widget.realEstate.sellerPhone!),
                           ],
                         ),
                       ),

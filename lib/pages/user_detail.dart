@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hazar_emlak/models/user.dart';
+import 'package:hazar_emlak/pages/real_estates_list.dart';
+import 'package:hazar_emlak/pages/userList.dart';
 import 'package:hazar_emlak/services/user_service.dart';
 
 class UserDetail extends StatelessWidget {
@@ -22,7 +24,11 @@ class UserDetail extends StatelessWidget {
         child: Icon(Icons.delete_sharp),
         onPressed: () async {
           await userService.deletePost(users.id!);
-          Navigator.of(context).pop();
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ShowUsers(),
+              ));
         },
       ),
       body: SingleChildScrollView(

@@ -1,48 +1,46 @@
-import 'dart:convert';
-
 class RealEstatesFilter {
-  String? kiralikSatilik;
-  String? odaSayisi;
+  String? rentSale;
+  String? roomNumbers;
   String? realEstateType;
-  int? minFiyat;
-  int? maxFiyat;
-  int? minBinaYasi;
-  int? maxBinaYasi;
-  int? fiyat;
-  int? metrekare;
-  int? binaYasi;
-  int? minMetrekare;
-  int? maxMetrekare;
+  int? minPrice;
+  int? maxPrice;
+  int? minBuildAge;
+  int? maxBuildAge;
+  int? price;
+  int? squareMeters;
+  int? buildAge;
+  int? minSquareMeters;
+  int? maxSquareMeters;
 
   RealEstatesFilter(
-      {this.kiralikSatilik,
-      this.odaSayisi,
+      {this.rentSale,
+      this.roomNumbers,
       this.realEstateType,
-      this.minFiyat,
-      this.maxFiyat,
-      this.minBinaYasi,
-      this.maxBinaYasi,
-      this.fiyat,
-      this.metrekare,
-      this.binaYasi,
-      this.minMetrekare,
-      this.maxMetrekare});
+      this.minPrice,
+      this.maxPrice,
+      this.minBuildAge,
+      this.maxBuildAge,
+      this.price,
+      this.squareMeters,
+      this.buildAge,
+      this.minSquareMeters,
+      this.maxSquareMeters});
   RealEstatesFilter.empty();
 
   factory RealEstatesFilter.fromJson(Map<String, dynamic> json) {
     return RealEstatesFilter(
-      kiralikSatilik: json["kiralikSatilik"],
-      odaSayisi: json["odaSayisi"],
+      rentSale: json["rentSale"],
+      roomNumbers: json["roomNumbers"],
       realEstateType: json["realEstateType"],
-      minFiyat: json["minFiyat"],
-      maxFiyat: json["maxFiyat"],
-      minBinaYasi: json["minBinaYasi"],
-      maxBinaYasi: json["maxBinaYasi"],
-      fiyat: json["fiyat"],
-      metrekare: json["metrekare"],
-      binaYasi: json["binaYasi"],
-      minMetrekare: json["minMetrekare"],
-      maxMetrekare: json["maxMetrekare"],
+      minPrice: json["minPrice"],
+      maxPrice: json["maxPrice"],
+      minBuildAge: json["minBuildAge"],
+      maxBuildAge: json["maxBuildAge"],
+      price: json["price"],
+      squareMeters: json["squareMeters"],
+      buildAge: json["buildAge"],
+      minSquareMeters: json["minSquareMeters"],
+      maxSquareMeters: json["maxSquareMeters"],
     );
   }
 }

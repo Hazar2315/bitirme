@@ -66,7 +66,7 @@ class RealEstatesListState extends State<RealEstatesList> {
         backgroundColor: Colors.grey.shade50,
         drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          title: const Text("Kullanıcılar"),
+          title: const Text("Gayrimenkuller"),
           backgroundColor: Colors.lightGreen.shade400,
           elevation: 0,
           // leading: IconButton(
@@ -95,7 +95,7 @@ class RealEstatesListState extends State<RealEstatesList> {
                         color: Colors.white,
                         elevation: 0.0,
                         child: ListTile(
-                            title: Text("Header Text :" +
+                            title: Text("Adres :" +
                                 realEstates.headerText.toString()),
                             subtitle: Text("id :" + realEstates.id.toString()),
                             trailing: Icon(

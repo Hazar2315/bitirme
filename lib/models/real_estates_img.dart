@@ -1,7 +1,4 @@
-import 'dart:typed_data';
-
 import 'package:hazar_emlak/models/real_estates.dart';
-import 'dart:convert';
 
 class RealEstatesIMG {
   int? id;

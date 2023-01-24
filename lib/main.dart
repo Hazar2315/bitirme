@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hazar_emlak/pages/login_screen.dart';
+
 import 'package:hazar_emlak/pages/welcome.dart';
 
 void main() async {

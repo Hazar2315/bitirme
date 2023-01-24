@@ -38,12 +38,14 @@ class _AddRealEstatesState extends State<AddRealEstates> {
           body: json.encode({
             'headerText': realEstates.headerText,
             'bodyText': realEstates.bodyText,
-            'kiralikSatilik': realEstates.kiralikSatilik,
-            'fiyat': realEstates.fiyat,
-            'metrekare': realEstates.metrekare,
-            'odaSayisi': realEstates.odaSayisi,
-            'binaYasi': realEstates.binaYasi,
+            'rentSale': realEstates.rentSale,
+            'price': realEstates.price,
+            'squareMeters': realEstates.squareMeters,
+            'roomNumbers': realEstates.roomNumbers,
+            'buildAge': realEstates.buildAge,
             'realEstateType': realEstates.realEstateType,
+            'sellerPhone': realEstates.sellerPhone,
+            'sellersCompany': realEstates.sellersCompany
           }));
       if (res.statusCode == 200 ||
           res.statusCode == 201 ||
@@ -59,7 +61,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
     }
 
     Future imageSave() async {
-      var rest = await http.post(Uri.parse(url3),
+      var res = await http.post(Uri.parse(url3),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
             'id': realEstatesIMG.id,
@@ -116,15 +118,15 @@ class _AddRealEstatesState extends State<AddRealEstates> {
               borderSide: BorderSide(color: Colors.lightGreen.shade400))),
     );
 
-    final fiyatField = TextFormField(
+    final priceField = TextFormField(
       autofocus: false,
       //controller: fiyatTyc,
-      keyboardType: TextInputType.name,
+      keyboardType: TextInputType.number,
       //validator:(){} ,
       onChanged: (value) {
         //int value = int.parse(realEstates.fiyat.toString());
         //realEstates.fiyat = value;
-        realEstates.fiyat = int.parse(value);
+        realEstates.price = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -143,14 +145,14 @@ class _AddRealEstatesState extends State<AddRealEstates> {
               borderSide: BorderSide(color: Colors.lightGreen.shade400))),
     );
 
-    final metrekareField = TextFormField(
+    final squareMetersField = TextFormField(
       autofocus: false,
       //controller: metreKareTyc,
-      keyboardType: TextInputType.name,
+      keyboardType: TextInputType.number,
       //validator:(){} ,
       onChanged: (value) {
         // int value = int.parse(realEstates.metrekare.toString());
-        realEstates.metrekare = int.parse(value);
+        realEstates.squareMeters = int.parse(value);
       },
       validator: (value) {
         if (value!.isEmpty) {
@@ -168,7 +170,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
               borderSide: BorderSide(color: Colors.lightGreen.shade400))),
     );
 
-    final binaYasiField = TextFormField(
+    final roomNumbersField = TextFormField(
       autofocus: false,
       //controller: binaYasiTyc,
       keyboardType: TextInputType.name,
@@ -182,7 +184,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
       },
       onChanged: (value) {
         //int value = int.parse(realEstates.binaYasi.toString());
-        realEstates.binaYasi = int.parse(value);
+        realEstates.buildAge = int.parse(value);
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -218,28 +220,53 @@ class _AddRealEstatesState extends State<AddRealEstates> {
       ),
     );
 
-    final saveImageButton = Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(30),
-      color: Colors.lightGreen.shade400,
-      child: MaterialButton(
-        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-        minWidth: MediaQuery.of(context).size.width,
-        onPressed: () {
-          //print(realEstates.toString());
-          if (_formKey.currentState!.validate()) {
-            imageSave();
-          }
-        },
-        child: Text(
-          "resim Ekle",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
+    final sellerPhoneField = TextFormField(
+      autofocus: false,
+      controller: TextEditingController(text: realEstates.sellerPhone),
+      keyboardType: TextInputType.name,
+      //validator:(){} ,
+      onChanged: (value) {
+        realEstates.sellerPhone = value;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'başlık boş';
+        }
+        return null;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          prefixIcon: Icon(Icons.view_headline_sharp),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Emlekçı",
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.lightGreen.shade400))),
     );
 
+    final sellersCompanyField = TextFormField(
+      autofocus: false,
+      controller: TextEditingController(text: realEstates.sellersCompany),
+      keyboardType: TextInputType.name,
+      //validator:(){} ,
+      onChanged: (value) {
+        realEstates.sellersCompany = value;
+      },
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'başlık boş';
+        }
+        return null;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+          prefixIcon: Icon(Icons.view_headline_sharp),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Emlakçı İsmi",
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.lightGreen.shade400))),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -287,7 +314,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
                         ),
                       ),
                       onChanged: (String? value) {
-                        realEstates.kiralikSatilik = value;
+                        realEstates.rentSale = value;
                         setState(() {
                           _chosenValue = value!;
                         });
@@ -315,7 +342,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
                         ),
                       ),
                       onChanged: (String? value) {
-                        realEstates.odaSayisi = value;
+                        realEstates.roomNumbers = value;
                         setState(() {
                           _chosenValue2 = value!;
                         });
@@ -360,15 +387,23 @@ class _AddRealEstatesState extends State<AddRealEstates> {
                     SizedBox(
                       height: 20,
                     ),
-                    fiyatField,
+                    priceField,
                     SizedBox(
                       height: 20,
                     ),
-                    metrekareField,
+                    squareMetersField,
                     SizedBox(
                       height: 20,
                     ),
-                    binaYasiField,
+                    sellerPhoneField,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    sellersCompanyField,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    roomNumbersField,
                     SizedBox(
                       height: 20,
                     ),

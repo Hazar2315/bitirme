@@ -16,10 +16,10 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
   @override
   Widget build(BuildContext context) {
     var binaYasiTyc =
-        TextEditingController(text: realEstates.binaYasi.toString());
-    var fiyatTyc = TextEditingController(text: realEstates.fiyat.toString());
+        TextEditingController(text: realEstates.buildAge.toString());
+    var fiyatTyc = TextEditingController(text: realEstates.price.toString());
     var metreKareTyc =
-        TextEditingController(text: realEstates.metrekare.toString());
+        TextEditingController(text: realEstates.squareMeters.toString());
 
     final bodyTextField = TextFormField(
       autofocus: false,
@@ -59,11 +59,11 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
       ),
     );
 
-    final kiralikSatilikTextField = TextFormField(
+    final rentSaleTextField = TextFormField(
       autofocus: false,
-      controller: TextEditingController(text: realEstates.kiralikSatilik),
+      controller: TextEditingController(text: realEstates.rentSale),
       onChanged: (value) {
-        realEstates.kiralikSatilik = value;
+        realEstates.rentSale = value;
       },
       validator: (val) {
         if (val!.isEmpty) {
@@ -73,17 +73,17 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: realEstates.kiralikSatilik,
+        hintText: realEstates.rentSale,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
 
-    final fiyatTextField = TextFormField(
+    final priceTextField = TextFormField(
       autofocus: false,
       controller: fiyatTyc,
       onChanged: (value) {
-        int value = int.parse(realEstates.fiyat.toString());
-        realEstates.fiyat = value;
+        int value = int.parse(realEstates.price.toString());
+        realEstates.price = value;
       },
       validator: (val) {
         if (val!.isEmpty) {
@@ -93,17 +93,17 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: realEstates.fiyat.toString(),
+        hintText: realEstates.price.toString(),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
 
-    final metrekareTextField = TextFormField(
+    final squareMetersTextField = TextFormField(
       autofocus: false,
       controller: metreKareTyc,
       onChanged: (value) {
-        int value = int.parse(realEstates.metrekare.toString());
-        realEstates.metrekare = value;
+        int value = int.parse(realEstates.squareMeters.toString());
+        realEstates.squareMeters = value;
       },
       validator: (val) {
         if (val!.isEmpty) {
@@ -113,16 +113,16 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: realEstates.metrekare.toString(),
+        hintText: realEstates.squareMeters.toString(),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
 
-    final odaSayisiTextField = TextFormField(
+    final roomNumbersTextField = TextFormField(
       autofocus: false,
-      controller: TextEditingController(text: realEstates.odaSayisi),
+      controller: TextEditingController(text: realEstates.roomNumbers),
       onChanged: (value) {
-        realEstates.odaSayisi = value;
+        realEstates.roomNumbers = value;
       },
       validator: (val) {
         if (val!.isEmpty) {
@@ -132,17 +132,17 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: realEstates.odaSayisi,
+        hintText: realEstates.roomNumbers,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
 
-    final binaYasiTextField = TextFormField(
+    final buildAgeTextField = TextFormField(
       autofocus: false,
       controller: binaYasiTyc,
       onChanged: (value) {
-        int value = int.parse(realEstates.binaYasi.toString());
-        realEstates.binaYasi = value;
+        int value = int.parse(realEstates.buildAge.toString());
+        realEstates.buildAge = value;
       },
       validator: (val) {
         if (val!.isEmpty) {
@@ -152,7 +152,7 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: realEstates.binaYasi.toString(),
+        hintText: realEstates.buildAge.toString(),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
@@ -212,23 +212,23 @@ class _PutRealEsatatesState extends State<PutRealEsatates> {
             SizedBox(
               height: 15,
             ),
-            kiralikSatilikTextField,
+            rentSaleTextField,
             SizedBox(
               height: 15,
             ),
-            metrekareTextField,
+            squareMetersTextField,
             SizedBox(
               height: 15,
             ),
-            fiyatTextField,
+            priceTextField,
             SizedBox(
               height: 15,
             ),
-            odaSayisiTextField,
+            roomNumbersTextField,
             SizedBox(
               height: 15,
             ),
-            binaYasiTextField,
+            buildAgeTextField,
             SizedBox(
               height: 15,
             ),
