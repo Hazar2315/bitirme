@@ -101,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final passwordField = TextFormField(
       autofocus: false,
       //controller: TextEditingController(text: user.password),
+      keyboardType: TextInputType.number,
       obscureText: true,
       validator: (value) {
         if (value!.isEmpty) {

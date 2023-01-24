@@ -223,7 +223,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
     final sellerPhoneField = TextFormField(
       autofocus: false,
       controller: TextEditingController(text: realEstates.sellerPhone),
-      keyboardType: TextInputType.name,
+      keyboardType: TextInputType.number,
       //validator:(){} ,
       onChanged: (value) {
         realEstates.sellerPhone = value;
