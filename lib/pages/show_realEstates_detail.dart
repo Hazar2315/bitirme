@@ -219,7 +219,9 @@ class _ShowDetailState extends State<ShowDetail> {
                                   ratingsList![index].comment!,
                                 ),
                                 leading: Icon(Icons.comment_sharp),
-                                subtitle: Text("Kullanıcı:" +
+                                subtitle: Text("Kullanıcı Rol : " +
+                                    ratingsList![index].user!.role +
+                                    "Kullanıcı:" +
                                     ratingsList![index].user!.email +
                                     " Gayrimenkul no : " +
                                     ratingsList![index]
