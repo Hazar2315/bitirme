@@ -221,7 +221,7 @@ class _ShowDetailState extends State<ShowDetail> {
                                 leading: Icon(Icons.comment_sharp),
                                 subtitle: Text("Kullanıcı Rol : " +
                                     ratingsList![index].user!.role +
-                                    "Kullanıcı:" +
+                                    " Kullanıcı:" +
                                     ratingsList![index].user!.email +
                                     " Gayrimenkul no : " +
                                     ratingsList![index]
