@@ -18,8 +18,16 @@ class _AddRealEstatesState extends State<AddRealEstates> {
   final _formKey = GlobalKey<FormState>();
 
   final List<String> list = <String>["Kiralık", "Satılık"];
-  final List<String> list2 = <String>["1+0", "2+1", "3+1", "4+1", "5+1", "6+2"];
-  final List<String> list3 = <String>["Ev", "Villa", "bina", "Arsa"];
+  final List<String> list2 = <String>[
+    "0",
+    "1+0",
+    "2+1",
+    "3+1",
+    "4+1",
+    "5+1",
+    "6+2"
+  ];
+  final List<String> list3 = <String>["Ev", "Villa", "Ofis", "Arsa"];
 
   String _chosenValue = "Kiralık";
   String _chosenValue2 = "1+0";
