@@ -96,7 +96,7 @@ class _AddRealEstatesState extends State<AddRealEstates> {
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.view_headline_sharp),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Başlık",
+          hintText: "Adres",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.lightGreen.shade400))),

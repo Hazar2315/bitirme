@@ -249,9 +249,16 @@ class _ShowDetailState extends State<ShowDetail> {
                         initialRating: 3,
                         allowHalfRating: true,
                         onRatingUpdate: (ratings) {
-                          setState(() {
-                            rating.ratings = ratings;
-                          });
+                          if (ratings == 0) {
+                            setState(() {
+                              ratings = 5;
+                              rating.ratings = rating.ratings! + ratings;
+                            });
+                          } else {
+                            setState(() {
+                              rating.ratings = ratings;
+                            });
+                          }
                         },
                         ratingWidget: RatingWidget(
                             full: Icon(
